@@ -7,8 +7,10 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: 'Find Voting Slip - BCPH',
-  description: 'Vote for PRIYA LEGHA - Bar Council Punjab & Haryana Election Campaign',
+  title: 'Find Voting Slip - Advocate Parveen Dahiya (Ms.) | BCPH',
+  description:
+    'Vote for Advocate Parveen Dahiya (Ms.) - Serial No. 127 | Bar Council of Punjab & Haryana Election Campaign. Vote for Progress, Integrity & Commitment.',
+
   generator: 'v0.app',
 
   icons: {
@@ -17,16 +19,17 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: 'Find Voting Slip - BCPH',
-    description: 'Vote for PRIYA LEGHA - Bar Council Punjab & Haryana Election Campaign',
-    url: 'https://votingslipbcph.in',
+    title: 'Find Voting Slip - Advocate Parveen Dahiya (Ms.)',
+    description:
+      'Support Advocate Parveen Dahiya (Ms.) - Serial No. 127 | Bar Council of Punjab & Haryana Election. Vote for Progress, Integrity & Commitment.',
+    url: 'https://bcph-parveen-dahiya.vercel.app',
     siteName: 'BCPH Voting Slip',
     images: [
       {
-        url: 'https://votingslipbcph.in/banner.png',
+        url: 'https://bcph-parveen-dahiya.vercel.app/banner.png',
         width: 1200,
         height: 630,
-        alt: 'BCPH Voting Slip',
+        alt: 'Advocate Parveen Dahiya - Serial No. 127',
       },
     ],
     type: 'website',
@@ -34,9 +37,10 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'Find Voting Slip - BCPH',
-    description: 'Vote for PRIYA LEGHA - Bar Council Punjab & Haryana Election Campaign',
-    images: ['https://votingslipbcph.in/banner.png'],
+    title: 'Find Voting Slip - Advocate Parveen Dahiya (Ms.)',
+    description:
+      'Vote for Advocate Parveen Dahiya (Ms.) - Serial No. 127 | Bar Council of Punjab & Haryana Election.',
+    images: ['https://bcph-parveen-dahiya.vercel.app/banner.png'],
   },
 }
 
