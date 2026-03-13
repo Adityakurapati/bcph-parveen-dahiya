@@ -9,17 +9,16 @@ interface VotingSlipProps {
   voter: Voter;
 }
 
-const FIXED_CANDIDATE_NAME = "PRIYA LEGHA";
-const FIXED_BALLOT_NUMBER = "137";
-const ORGANIZATION = "BCPH";
+const FIXED_CANDIDATE_NAME = "ADVOCATE PARVEEN DAHIYA (Ms.)";
+const FIXED_BALLOT_NUMBER = "127";
+const ORGANIZATION = "BAR COUNCIL OF PUNJAB & HARYANA";
 
-// 👉 Optional: Add number like 919876543210 (without +)
 const WHATSAPP_NUMBER = "";
 
 export function VotingSlip({ voter }: VotingSlipProps) {
+
   const slipRef = useRef<HTMLDivElement>(null);
 
-  /* ================= GENERATE IMAGE ================= */
   const generateImage = async () => {
     if (!slipRef.current) return null;
 
@@ -36,7 +35,7 @@ export function VotingSlip({ voter }: VotingSlipProps) {
     if (!slipRef.current) return;
 
     try {
-      // 1️⃣ Convert HTML to image
+
       const dataUrl = await htmlToImage.toPng(slipRef.current, {
         quality: 1,
         pixelRatio: 2,
@@ -48,19 +47,21 @@ export function VotingSlip({ voter }: VotingSlipProps) {
         type: "image/png",
       });
 
-      // 2️⃣ Use Native Share API (THIS opens WhatsApp app properly)
       if (navigator.share && navigator.canShare({ files: [file] })) {
+
         await navigator.share({
           title: "Voting Slip",
-          text: "Please find your voting slip at https://votingslipbcph.in",
+          text: "Please find your voting slip for Bar Council Election",
           files: [file],
         });
+
       } else {
-        // 3️⃣ Fallback for unsupported browsers
+
         const link = document.createElement("a");
         link.href = dataUrl;
         link.download = "VotingSlip.png";
         link.click();
+
       }
 
     } catch (error) {
@@ -68,27 +69,33 @@ export function VotingSlip({ voter }: VotingSlipProps) {
     }
   };
 
-  /* ================= NORMAL SHARE ================= */
   const handleShare = async () => {
+
     try {
+
       const dataUrl = await generateImage();
       if (!dataUrl) return;
 
       const blob = await (await fetch(dataUrl)).blob();
+
       const file = new File([blob], "VotingSlip.png", {
         type: "image/png",
       });
 
       if (navigator.share && navigator.canShare({ files: [file] })) {
+
         await navigator.share({
           title: "Voting Slip",
           files: [file],
         });
+
       } else {
+
         const link = document.createElement("a");
         link.href = dataUrl;
         link.download = "VotingSlip.png";
         link.click();
+
       }
 
     } catch (error) {
@@ -96,9 +103,10 @@ export function VotingSlip({ voter }: VotingSlipProps) {
     }
   };
 
-  /* ================= DOWNLOAD ONLY ================= */
   const handleDownload = async () => {
+
     try {
+
       const dataUrl = await generateImage();
       if (!dataUrl) return;
 
@@ -112,9 +120,8 @@ export function VotingSlip({ voter }: VotingSlipProps) {
     }
   };
 
-  /* ================= UI ================= */
-
   return (
+
     <div className="w-full max-w-4xl mx-auto">
 
       {/* SLIP */}
@@ -123,12 +130,14 @@ export function VotingSlip({ voter }: VotingSlipProps) {
         className="w-full max-w-4xl mx-auto bg-white shadow-lg border overflow-hidden"
       >
 
+        {/* TOP */}
         <div className="flex justify-between items-start px-6 py-4 border-b">
 
           {/* LEFT */}
           <div className="space-y-1">
+
             <p className="text-sm font-semibold text-gray-700">
-              SR. NO: {voter.sr_no}
+              SR. NO : {voter.sr_no}
             </p>
 
             <h2 className="text-xl font-bold tracking-wide">
@@ -136,41 +145,50 @@ export function VotingSlip({ voter }: VotingSlipProps) {
             </h2>
 
             <p className="text-sm">
-              <span className="font-semibold">Place Of Voting:</span>{" "}
+              <span className="font-semibold">Place Of Voting :</span>{" "}
               {voter.place_of_voting}
             </p>
 
             <p className="text-sm">
-              <span className="font-semibold">Address:</span>{" "}
+              <span className="font-semibold">Address :</span>{" "}
               {voter.address}
             </p>
+
           </div>
 
           {/* RIGHT */}
           <div className="text-center flex flex-col items-center gap-3">
+
             <div>
-              <p className="text-blue-700 font-bold text-lg">
+
+              <p className="text-green-700 font-bold text-lg">
                 {FIXED_CANDIDATE_NAME}
               </p>
+
               <p className="text-red-600 font-semibold text-sm">
                 First / Best Preference
               </p>
+
             </div>
 
             <div className="w-28 h-28">
+
               <svg viewBox="0 0 200 200" className="w-full h-full">
-                <circle cx="100" cy="100" r="90" stroke="#1e3a8a" strokeWidth="6" fill="none" />
-                <circle cx="100" cy="100" r="60" stroke="#1e3a8a" strokeWidth="2" fill="none" />
+
+                <circle cx="100" cy="100" r="90" stroke="#065f46" strokeWidth="6" fill="none" />
+                <circle cx="100" cy="100" r="60" stroke="#065f46" strokeWidth="2" fill="none" />
 
                 <path id="topArc" d="M 30 100 A 70 70 0 0 1 170 100" fill="none" />
-                <text fontSize="18" fontWeight="bold" fill="#1e3a8a" letterSpacing="3">
+
+                <text fontSize="18" fontWeight="bold" fill="#065f46" letterSpacing="3">
                   <textPath href="#topArc" startOffset="50%" textAnchor="middle">
-                    BALLOT
+                    SERIAL
                   </textPath>
                 </text>
 
                 <path id="bottomArc" d="M 20 100 A 80 80 0 0 0 180 100" fill="none" />
-                <text fontSize="18" fontWeight="bold" fill="#1e3a8a" letterSpacing="3">
+
+                <text fontSize="18" fontWeight="bold" fill="#065f46" letterSpacing="3">
                   <textPath href="#bottomArc" startOffset="50%" textAnchor="middle">
                     NUMBER
                   </textPath>
@@ -186,29 +204,43 @@ export function VotingSlip({ voter }: VotingSlipProps) {
                 >
                   {FIXED_BALLOT_NUMBER}
                 </text>
+
               </svg>
+
             </div>
+
           </div>
+
         </div>
 
-        {/* BOTTOM */}
+        {/* FOOTER */}
         <div className="bg-yellow-100 px-6 py-4 text-center">
+
           <p className="text-base text-gray-800">
+
             Please vote for{" "}
-            <span className="font-bold text-blue-700">
+            <span className="font-bold text-green-700">
               {FIXED_CANDIDATE_NAME}
             </span>{" "}
-            (Ballot No.{" "}
+
+            (Serial No.{" "}
             <span className="font-bold text-red-600">
               {FIXED_BALLOT_NUMBER}
             </span>
-            ) as{" "}
+            )
+
+            {" "}as{" "}
+
             <span className="font-bold text-red-600">
               First / Best Preference
             </span>{" "}
+
             in {ORGANIZATION}
+
           </p>
+
         </div>
+
       </div>
 
       {/* BUTTONS */}
@@ -251,6 +283,7 @@ export function VotingSlip({ voter }: VotingSlipProps) {
         </div>
 
       </div>
+
     </div>
   );
 }

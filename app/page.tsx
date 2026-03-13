@@ -54,46 +54,44 @@ export default function Home() {
   return (
     <main className="min-h-screen bg-gray-50 flex flex-col items-center px-3 py-3 space-y-4">
 
-      {/* 🔹 LOGO + BALLOT (Clean Direct Image) */}
-<div className="w-full max-w-4xl">
-  <div className="grid grid-cols-10 gap-3 items-center">
+      {/* LOGO + BALLOT */}
+      <div className="w-full max-w-4xl">
+        <div className="grid grid-cols-10 gap-3 items-center">
 
-    {/* 🔹 LOGO – 30% (Direct Image, No Border) */}
-    <div className="col-span-3 flex items-center">
-  <Image
-    src="/logo.png"
-    alt="Campaign Logo"
-    width={200}
-    height={80}
-    priority
-    className="
-      object-contain
-      w-full
-      max-w-[160px]      /* Mobile Bigger */
-      sm:max-w-[130px]   /* Small devices */
-      md:max-w-[110px]   /* Tablet */
-      lg:max-w-[90px]    /* Desktop Smaller */
-      h-auto
-    "
-  />
-</div>
+          {/* LOGO */}
+          <div className="col-span-3 flex items-center">
+            <Image
+              src="/logo.png"
+              alt="Campaign Logo"
+              width={200}
+              height={80}
+              priority
+              className="
+                object-contain
+                w-full
+                max-w-[160px]
+                sm:max-w-[130px]
+                md:max-w-[110px]
+                lg:max-w-[90px]
+                h-auto
+              "
+            />
+          </div>
 
+          {/* BALLOT NUMBER */}
+          <div className="col-span-7 bg-green-700 text-white rounded-md flex flex-col justify-center items-center h-16 shadow-sm">
+            <p className="text-xs leading-tight">
+              Serial Number
+            </p>
+            <p className="text-base font-bold leading-tight">
+              127
+            </p>
+          </div>
 
-    {/* 🔹 BALLOT – 70% */}
-    <div className="col-span-7 bg-primary text-white rounded-md flex flex-col justify-center items-center h-16 shadow-sm">
-      <p className="text-xs leading-tight">
-        1st / Best Preference
-      </p>
-      <p className="text-base font-bold leading-tight">
-        Ballot No. 137
-      </p>
-    </div>
+        </div>
+      </div>
 
-  </div>
-</div>
-
-
-      {/* 🔹 SEARCH SECTION */}
+      {/* SEARCH SECTION */}
       <div className="w-full max-w-4xl bg-white rounded-lg shadow-sm p-4">
         <h2 className="text-sm font-semibold text-center mb-3">
           Voting Slip Finder
@@ -106,13 +104,13 @@ export default function Home() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             disabled={loading}
-            className="w-full pl-3 pr-20 py-2 text-sm border rounded-md focus:outline-none focus:ring-1 focus:ring-primary"
+            className="w-full pl-3 pr-20 py-2 text-sm border rounded-md focus:outline-none focus:ring-1 focus:ring-green-600"
           />
 
           <button
             type="submit"
             disabled={loading || !searchTerm.trim()}
-            className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-primary text-white rounded-md"
+            className="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-1.5 bg-green-700 text-white rounded-md"
           >
             {loading ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -130,9 +128,9 @@ export default function Home() {
         )}
       </div>
 
-      {/* 🔹 VOTING SLIP MODAL */}
+      {/* VOTING SLIP MODAL */}
       {selectedVoter && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-blue-900/80 backdrop-blur-sm px-3">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-green-900/80 backdrop-blur-sm px-3">
           <div className="relative w-full max-w-4xl">
 
             <button
@@ -147,7 +145,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* 🔹 MULTIPLE RESULTS MODAL */}
+      {/* MULTIPLE RESULTS */}
       {showResults && searchResults && (
         <VoterResults
           voters={searchResults}
@@ -160,73 +158,90 @@ export default function Home() {
         />
       )}
 
-      {/* 🔹 CAMPAIGN HERO SECTION (Compact) */}
+      {/* CAMPAIGN SECTION */}
       <div className="w-full max-w-4xl bg-white rounded-lg shadow-sm p-4 space-y-4">
 
-        {/* Image + Name + Ballot */}
+        {/* Candidate */}
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
 
           <div className="flex items-center gap-3">
-            <div className="relative w-34 h-38 rounded-md overflow-hidden border border-yellow-400 shadow-sm">
+
+            <div className="relative w-36 h-40 rounded-md overflow-hidden border border-green-600 shadow-sm">
               <Image
-                src="/priya_lehga.jpeg"
-                alt="Priya Legha"
+                src="/parveen_dahiya.jpeg"
+                alt="Parveen Dahiya"
                 fill
                 className="object-cover"
               />
             </div>
 
             <div>
-              <h1 className="text-lg font-bold">PRIYA LEGHA</h1>
-              <p className="text-xs text-gray-600">Advocate</p>
+              <h1 className="text-lg font-bold">
+                ADVOCATE PARVEEN DAHIYA (Ms.)
+              </h1>
+
+              <p className="text-xs text-gray-600">
+                Former Joint Secretary
+              </p>
+
               <p className="text-xs font-medium">
-                Candidate – Bar Council Punjab & Haryana
+                PHHCBA (2023 – 2025)
+              </p>
+
+              <p className="text-xs font-semibold mt-1">
+                Contesting for Member (BCPH)
               </p>
             </div>
+
           </div>
 
-        
         </div>
 
-        {/* Vote / Support / Elect */}
-        <div className="flex justify-center gap-6 mt-8 text-xs font-semibold text-gray-700">
-          <span>Vote</span>
-          <span>Support</span>
-          <span>Elect</span>
+        {/* Slogan */}
+        <div className="flex justify-center gap-6 mt-6 text-xs font-semibold text-gray-700">
+          <span>Vote for Progress</span>
+          <span>Vote for Integrity</span>
+          <span>Vote for Commitment</span>
         </div>
 
-        {/* Contact + Dates (2x2 Compact Grid) */}
-        <div className="grid grid-cols-2 gap-3 mt-8 text-xs">
+        {/* Campaign Message */}
+        <div className="text-center mt-4 font-bold text-green-700">
+          30% Reservation • 100% Dedication
+        </div>
+
+        {/* Contact Grid */}
+        <div className="grid grid-cols-2 gap-3 mt-6 text-xs">
 
           <div className="flex gap-2 border rounded-md p-2">
-            <MapPin className="w-4 h-4 text-primary mt-0.5" />
+            <MapPin className="w-4 h-4 text-green-700 mt-0.5" />
             <div>
-              <p className="font-semibold">Chamber 306</p>
-              <p>District & Session Courts, Bhiwani</p>
+              <p className="font-semibold">Office</p>
+              <p>Cabin No. 5, Adjoining Library Lawn</p>
+              <p>Punjab & Haryana High Court</p>
             </div>
           </div>
 
           <div className="flex gap-2 border rounded-md p-2">
-            <Phone className="w-4 h-4 text-primary mt-0.5" />
+            <Phone className="w-4 h-4 text-green-700 mt-0.5" />
             <div>
               <p className="font-semibold">Contact</p>
-              <p>90344-44612</p>
+              <p>+91 9056678891</p>
             </div>
           </div>
 
           <div className="flex gap-2 border rounded-md p-2">
-            <Calendar className="w-4 h-4 text-primary mt-0.5" />
+            <Calendar className="w-4 h-4 text-green-700 mt-0.5" />
             <div>
-              <p className="font-semibold">17 March</p>
-              <p>High Court</p>
+              <p className="font-semibold">Election</p>
+              <p>Bar Council Punjab & Haryana</p>
             </div>
           </div>
 
           <div className="flex gap-2 border rounded-md p-2">
-            <Calendar className="w-4 h-4 text-primary mt-0.5" />
+            <Calendar className="w-4 h-4 text-green-700 mt-0.5" />
             <div>
-              <p className="font-semibold">18 March</p>
-              <p>District Courts</p>
+              <p className="font-semibold">Preference</p>
+              <p>Serial No. 127</p>
             </div>
           </div>
 
