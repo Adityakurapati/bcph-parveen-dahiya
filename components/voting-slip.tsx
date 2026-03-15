@@ -43,7 +43,6 @@ export function VotingSlip({ voter }: VotingSlipProps) {
       });
 
       const blob = await (await fetch(dataUrl)).blob();
-
       const file = new File([blob], "VotingSlip.png", {
         type: "image/png",
       });
@@ -134,41 +133,38 @@ export function VotingSlip({ voter }: VotingSlipProps) {
         {/* TOP */}
         <div className="flex justify-between items-start px-6 py-4 border-b">
 
-          {/* LEFT - VOTER DETAILS WITH PHOTO */}
-          <div className="flex items-start gap-4">
+          {/* LEFT */}
+          <div className="space-y-1">
 
+            <p className="text-sm font-semibold text-gray-700">
+              SR. NO : {voter.sr_no}
+            </p>
 
-            <div className="space-y-1">
+            <h2 className="text-xl font-bold tracking-wide">
+              {voter.name.toUpperCase()}
+            </h2>
 
-              <p className="text-sm font-semibold text-gray-700">
-                SR. NO : {voter.sr_no}
-              </p>
+            <p className="text-sm">
+              <span className="font-semibold">Place Of Voting :</span>{" "}
+              {voter.place_of_voting}
+            </p>
 
-              <h2 className="text-xl font-bold tracking-wide">
-                {voter.name.toUpperCase()}
-              </h2>
-
-              <p className="text-sm">
-                <span className="font-semibold">Place Of Voting :</span>{" "}
-                {voter.place_of_voting}
-              </p>
-
-              <p className="text-sm">
-                <span className="font-semibold">Address :</span>{" "}
-                {voter.address}
-              </p>
-
-            <img
-              src="/parveen_dahiya.jpeg"
-              alt="Advocate Parveen Dahiya"
-              className="w-20 h-20 mt-4 object-cover rounded-full border"
-            />
-            </div>
+            <p className="text-sm">
+              <span className="font-semibold">Address :</span>{" "}
+              {voter.address}
+            </p>
 
           </div>
 
           {/* RIGHT */}
           <div className="text-center flex flex-col items-center gap-3">
+
+            {/* Candidate Photo */}
+            <img
+              src="/parveen_dahiya.jpeg"
+              alt="Advocate Parveen Dahiya"
+              className="w-20 h-20 object-cover rounded-full border-2 border-green-700"
+            />
 
             <div>
 
