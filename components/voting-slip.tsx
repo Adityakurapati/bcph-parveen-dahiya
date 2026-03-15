@@ -173,7 +173,7 @@ export function VotingSlip({ voter }: VotingSlipProps) {
               </p>
 
               <p className="text-red-600 font-semibold text-sm">
-                1st / Best Preference
+                Vote 1st / Best Preference
               </p>
 
             </div>
@@ -239,7 +239,7 @@ export function VotingSlip({ voter }: VotingSlipProps) {
             {" "}as{" "}
 
             <span className="font-bold text-red-600">
-              1st / Best Preference
+              Vote 1st / Best Preference
             </span>{" "}
 
             in {ORGANIZATION}
