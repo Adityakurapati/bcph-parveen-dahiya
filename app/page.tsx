@@ -81,10 +81,7 @@ export default function Home() {
           {/* BALLOT NUMBER */}
           <div className="col-span-7 bg-green-700 text-white rounded-md flex flex-col justify-center items-center h-16 shadow-sm">
             <p className="text-xs leading-tight">
-              Serial Number
-            </p>
-            <p className="text-base font-bold leading-tight">
-              127
+              Serial No. 127
             </p>
           </div>
 
